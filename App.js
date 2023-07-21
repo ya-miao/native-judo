@@ -4,10 +4,24 @@ import { Platform, SafeAreaView, StatusBar as NativeStatusBar, StyleSheet, Text,
 
 import { configureFonts, MD3DarkTheme as DarkTheme, PaperProvider } from 'react-native-paper';
 
+import { useFonts } from 'expo-font';
+
 import JudoAppBar from './app/assets/screens/JudoAppBar';
 import TopTabPager from './app/assets/screens/TopTabPager';
 
 export default function App() {
+
+  const [loaded] = useFonts({
+    Montserrat: require('./app/assets/fonts/Montserrat-Regular.ttf'),
+  });
+
+  if (!loaded) {
+    return null;
+  }
+
+  const fontConfig = {
+    fontFamily: 'Montserrat',
+  };
 
   const theme = {
     // fonts: configureFonts({ config: fontConfig }),
