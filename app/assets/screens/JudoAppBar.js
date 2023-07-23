@@ -1,10 +1,12 @@
 import * as React from 'react';
 
 import { Image, View } from "react-native"
-import { Appbar } from 'react-native-paper';
+import { Appbar, IconButton } from 'react-native-paper';
 import { StatusBar } from 'react-native';
 
 import { Text } from 'react-native-paper';
+
+import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 
 // import { useFonts } from 'expo-font';
 
@@ -25,20 +27,26 @@ const JudoAppBar = () => {
   return (
     <Appbar.Header
       mode='small'
-      style={{ backgroundColor: '#101010' }}
+      style={{ backgroundColor: '#000000' }}
     // style={{ paddingTop: StatusBar.currentHeight }} // This should only work for Android. iOS has SafeAreaView that does not work with Android
     >
       {/* <Appbar.BackAction onPress={() => { }} /> */}
       <Appbar.Content title={
-        <View style={{ padding: 6, flexDirection: 'row', gap: 12, alignItems: 'center' }}>
+        <View style={{ padding: 5, flexDirection: 'row', gap: 10, alignItems: 'center', justifyContent: 'space-between' }}>
           <Image
             source={require('../icons/judo-logo-white.png')}
             style={{ width: 40, height: 30 }}
           />
-          {/* <Text variant="titleLarge" style={{ fontFamily: 'Orbitron' }}> */}
-          {/* <Text variant="titleLarge">
-            JUDO
+          {/* <MaterialCommunityIcons name="home" color='#ffffff' size={26} /> */}
+          {/* <Text variant='labelSmall'>
+            Strategize
           </Text> */}
+          <IconButton
+            icon="logout"
+            iconColor='#ffffff'
+            size={25}
+            onPress={() => console.log('Pressed')}
+          />
         </View>
       } />
       {/* <Appbar.Action icon="calendar" onPress={() => { }} />

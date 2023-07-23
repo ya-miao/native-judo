@@ -55,19 +55,7 @@ function TopTabPager() {
             tabBarShowLabel: false,
             // tabBarShowLabel: true,
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="home" color={color} size={26} />
-            )
-          }}
-        />
-        <Tab.Screen
-          name="Strategy"
-          component={StrategyTab}
-          options={{
-            tabBarLabel: 'Strategy',
-            tabBarShowLabel: false,
-            // tabBarShowLabel: true,
-            tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="strategy" color={color} size={26} />
+              <MaterialCommunityIcons name="home" color={color} size={25} />
             )
           }}
         />
@@ -79,7 +67,19 @@ function TopTabPager() {
             tabBarShowLabel: false,
             // tabBarShowLabel: true,
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="notebook" color={color} size={26} />
+              <MaterialCommunityIcons name="notebook" color={color} size={25} />
+            )
+          }}
+        />
+        <Tab.Screen
+          name="Strategies"
+          component={StrategyTab}
+          options={{
+            tabBarLabel: 'Strategies',
+            tabBarShowLabel: false,
+            // tabBarShowLabel: true,
+            tabBarIcon: ({ color }) => (
+              <MaterialCommunityIcons name="strategy" color={color} size={25} />
             )
           }}
         />
@@ -91,7 +91,7 @@ function TopTabPager() {
             tabBarShowLabel: false,
             // tabBarShowLabel: true,
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="account-group" color={color} size={26} />
+              <MaterialCommunityIcons name="account-group" color={color} size={25} />
             )
           }}
         />
@@ -103,7 +103,7 @@ function TopTabPager() {
             tabBarShowLabel: false,
             // tabBarShowLabel: true,
             tabBarIcon: ({ color }) => (
-              <MaterialCommunityIcons name="account" color={color} size={26} />
+              <MaterialCommunityIcons name="account" color={color} size={25} />
             )
           }}
         />

@@ -13,6 +13,7 @@ export default function App() {
 
   const [loaded] = useFonts({
     Montserrat: require('./app/assets/fonts/Montserrat-Regular.ttf'),
+    // Orbitron: require('./app/assets/fonts/Orbitron-Regular.ttf'),
   });
 
   if (!loaded) {
@@ -24,7 +25,7 @@ export default function App() {
   };
 
   const theme = {
-    // fonts: configureFonts({ config: fontConfig }),
+    fonts: configureFonts({ config: fontConfig }),
     roundness: 1,
     colors: {
       ...DarkTheme.colors,
@@ -45,7 +46,7 @@ export default function App() {
         <ExpoStatusBar /> : <NativeStatusBar />
       } */}
       <NativeStatusBar />
-      {/* <JudoAppBar /> */}
+      <JudoAppBar />
       <SafeAreaView style={{
         flex: 1,
         backgroundColor: '#101010',
