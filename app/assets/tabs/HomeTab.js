@@ -25,7 +25,7 @@ const HomeTab = ({ navigation }) => {
               Techniques
             </Text>
             <Text>
-              You currently have 2 techniques.
+              You currently have 3 techniques.
             </Text>
             <Text>
               Let's take a look at what you have so far!
