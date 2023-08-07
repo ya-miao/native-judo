@@ -2,7 +2,7 @@
 import { Button, IconButton, List, Modal, Portal, Surface, Text } from "react-native-paper"
 import { View } from "react-native";
 
-const TechniqueModal = (props) => {
+const DisplayTechniqueModal = (props) => {
   return (
     <Portal>
       <Modal visible={props.visible} onDismiss={props.hideModal} contentContainerStyle={modalStyle}>
@@ -14,7 +14,7 @@ const TechniqueModal = (props) => {
   )
 };
 
-export default TechniqueModal;
+export default DisplayTechniqueModal;
 
 const modalStyle = {
   padding: 10,

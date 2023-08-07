@@ -6,172 +6,119 @@ import { ScrollView, TouchableOpacity, View } from "react-native"
 import { Button, List, Modal, Portal, } from 'react-native-paper';
 
 import { StyleSheet } from 'react-native';
-import TechniqueModal from "../modals/TechniqueModal";
+
+import DisplayTechniqueModal from "../modals/DisplayTechniqueModal";
+import EditTechniqueModal from "../modals/EditTechniqueModal";
 
 const TechniquesTab = () => {
 
   const [visible, setVisible] = useState(false);
-  const [modalContent, setModalContent] = useState('');
+  const [editVisible, setEditVisible] = useState(false);
 
-  // const showModal = () => {
-  //   setVisible(true);
-  //   // setModalContent(content);
-  // };
+  const [modalContent, setModalContent] = useState('');
 
   const showModal = () => setVisible(true);
   const hideModal = () => setVisible(false);
+
+  const showEditModal = () => setEditVisible(true);
+  const hideEditModal = () => setEditVisible(false);
 
   return (
     <>
       <ScrollView>
         <View style={{ flexDirection: 'column', padding: 20, gap: 10 }}>
-          <Surface style={styles.surface} elevation={5}>
-            <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-              <Text variant="titleLarge">
-                Techniques
-              </Text>
-              <Text>
-                What are we working on today?
-              </Text>
-            </View>
-          </Surface>
-          <Surface style={styles.surface} elevation={5}>
-            <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-              <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <IconButton
+          {userTechniqueList.map((technique) => (
+            <Surface style={styles.techniqueCard} elevation={5} key={technique.id}>
+              <View style={{ flexDirection: 'column' }}>
+                <View style={{ alignSelf: 'stretch', flexDirection: 'column' }}>
+                  <View style={{ alignItems: 'center', justifyContent: 'center', paddingTop: 20 }}>
+                    <Text variant="titleLarge" >
+                      {technique.name}
+                    </Text>
+                  </View>
+                </View>
+              </View>
+              <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' }}>
+                <Button
                   icon="magnify"
-                  iconColor='#ffffff'
-                  size={20}
                   onPress={() => {
                     showModal();
                     setModalContent(
                       <View style={{ gap: 15 }}>
-                        <Text variant="titleLarge">Ippon Seoi Nage</Text>
+                        <Text variant="titleLarge">{technique.name}</Text>
                         <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Description</Text> */}
                           <Text variant='labelSmall'>Description</Text>
-                          <Text style={{ paddingLeft: 10 }}>One Hand Shoulder Throw</Text>
+                          <Text style={{ paddingLeft: 10 }}>{technique.description}</Text>
                         </View>
                         <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Notes</Text> */}
                           <Text variant='labelSmall'>Notes</Text>
-                          <Text style={{ paddingLeft: 10 }}>Here are some notes.</Text>
+                          <Text style={{ paddingLeft: 10 }}>{technique.notes}</Text>
                         </View>
                       </View>
                     );
-                  }}
-                />
-                <Text variant="titleLarge">
-                  Ippon Seoi Nage
-                </Text>
+                  }}>
+                  <Text variant='labelSmall'>
+                    Details
+                  </Text>
+                </Button>
+                <View style={{ flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end' }}>
+                  <IconButton
+                    icon="pencil"
+                    iconColor='#696969'
+                    size={20}
+                    onPress={() => {
+                      showEditModal();
+                    }}
+                  />
+                  <IconButton
+                    icon="delete"
+                    iconColor='#696969'
+                    size={20}
+                    onPress={() => {
+                      showModal();
+                      setModalContent(
+                        <View style={{ gap: 15 }}>
+                          <Text variant="titleLarge">Confirm Delete</Text>
+                          <View style={{ gap: 10 }}>
+                            <Text style={{ paddingLeft: 10 }}>Are you sure you want to delete this technique?</Text>
+                          </View>
+                          <View style={{ gap: 10, flexDirection: 'row', justifyContent: 'flex-end' }}>
+                            <TouchableOpacity>
+                              <Button mode='contained-tonal'>
+                                <Text variant='labelMedium'>
+                                  Delete
+                                </Text>
+                              </Button>
+                            </TouchableOpacity>
+                            <TouchableOpacity>
+                              <Button mode='outlined'>
+                                <Text variant='labelMedium'>
+                                  Cancel
+                                </Text>
+                              </Button>
+                            </TouchableOpacity>
+                          </View>
+                        </View>
+                      );
+                    }}
+                  />
+                </View>
               </View>
-              {/* <Text>
-              One Hand Shoulder Throw
-            </Text> */}
-            </View>
-          </Surface>
-          <Surface style={styles.surface} elevation={5}>
-            <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-              <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <IconButton
-                  icon="magnify"
-                  iconColor='#ffffff'
-                  size={20}
-                  onPress={() => {
-                    showModal();
-                    setModalContent(
-                      <View style={{ gap: 15 }}>
-                        <Text variant="titleLarge">Tai Otoshi</Text>
-                        <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Description</Text> */}
-                          <Text variant='labelSmall'>Description</Text>
-                          <Text style={{ paddingLeft: 10 }}>Body Drop</Text>
-                        </View>
-                        <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Notes</Text> */}
-                          <Text variant='labelSmall'>Notes</Text>
-                          <Text style={{ paddingLeft: 10 }}>Here are some notes.</Text>
-                        </View>
-                      </View>
-                    );
-                  }}
-                />
-                <Text variant="titleLarge">
-                  Tai Otoshi
-                </Text>
-              </View>
-              {/* <Text>
-              Body Drop
-            </Text> */}
-            </View>
-          </Surface>
-          <Surface style={styles.surface} elevation={5}>
-            <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-              <View style={{ alignItems: 'center', flexDirection: 'row', justifyContent: 'flex-start' }}>
-                <IconButton
-                  icon="magnify"
-                  iconColor='#ffffff'
-                  size={20} onPress={() => {
-                    showModal();
-                    setModalContent(
-                      <View style={{ gap: 15 }}>
-                        <Text variant="titleLarge">Ogoshi</Text>
-                        <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Description</Text> */}
-                          <Text variant='labelSmall'>Description</Text>
-                          <Text style={{ paddingLeft: 10 }}>Major Hip Throw</Text>
-                        </View>
-                        <View style={{ gap: 10 }}>
-                          {/* <Text variant='labelSmall' style={{ paddingLeft: 10 }}>Notes</Text> */}
-                          <Text variant='labelSmall'>Notes</Text>
-                          <Text style={{ paddingLeft: 10 }}>Here are some notes.</Text>
-                        </View>
-                      </View>
-                    );
-                  }}
-                />
-                <Text variant="titleLarge">
-                  Ogoshi
-                </Text>
-              </View>
-              {/* <Text>
-              Major Hip Throw
-            </Text> */}
-            </View>
-          </Surface>
-          {/* <Surface style={styles.surface} elevation={5}>
-          <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-            <Text variant="titleLarge">
-              Tai Otoshi
-            </Text>
-            <Text>
-              Body Drop
-            </Text>
-            <TouchableOpacity>
-              <Button icon='magnify' mode="outlined">
-                Details
-              </Button>
-            </TouchableOpacity>
-          </View>
-        </Surface>
-        <Surface style={styles.surface} elevation={5}>
-          <View style={{ alignSelf: 'stretch', flexDirection: 'column', gap: 10 }}>
-            <Text variant="titleLarge">
-              O Goshi
-            </Text>
-            <Text>
-              Major Hip Throw
-            </Text>
-            <TouchableOpacity>
-              <Button icon='magnify' mode="outlined">
-                Details
-              </Button>
-            </TouchableOpacity>
-          </View>
-        </Surface> */}
+            </Surface>
+          ))}
         </View>
       </ScrollView>
-      <TechniqueModal modalContent={modalContent} visible={visible} hideModal={hideModal} />
+      <Surface style={{ padding: 10, backgroundColor: '#000000' }}>
+        <TouchableOpacity>
+          <Button icon='plus' mode="outlined" onPress={showEditModal}>
+            <Text variant='titleMedium'>
+              Create A Technique
+            </Text>
+          </Button>
+        </TouchableOpacity>
+      </Surface>
+      <EditTechniqueModal visible={editVisible} hideModal={hideEditModal} />
+      <DisplayTechniqueModal modalContent={modalContent} visible={visible} hideModal={hideModal} />
     </>
   )
 }
@@ -181,8 +128,60 @@ export default TechniquesTab;
 const styles = StyleSheet.create({
   surface: {
     padding: 20,
-    alignItems: 'flex-start',
-    justifyContent: 'center',
+    alignItems: 'stretch',
+    justifyContent: 'stretch',
+    backgroundColor: '#000000',
+  },
+  techniqueCard: {
+    padding: 5,
+    gap: 5,
+    alignItems: 'stretch',
+    justifyContent: 'stretch',
     backgroundColor: '#000000',
   },
 });
+
+const userTechniqueList = [
+  {
+    id: 0,
+    name: "Ippon Seoi Nage",
+    description: 'One Hand Shoulder Throw',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 1,
+    name: "Tai Otoshi",
+    description: 'Body Drop',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 2,
+    name: "Ogoshi",
+    description: 'Body Drop',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 3,
+    name: "Uchi Mata",
+    description: 'Inner Thigh Throw',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 4,
+    name: "Kosoto Gari",
+    description: 'Minor Outside Reaping Throw',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 5,
+    name: "Ura Nage",
+    description: 'Rear Throw',
+    notes: 'Some notes here.'
+  },
+  {
+    id: 6,
+    name: "Tani Otoshi",
+    description: 'Valley Drop',
+    notes: 'Some notes here.'
+  },
+]
